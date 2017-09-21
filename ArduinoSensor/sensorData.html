@@ -1,0 +1,20 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Sonic Sensor Data</title>
+	</head>
+	<body>
+		<div>Inches from Sonic Sensor</div>
+		<div id="sensorValue"> </div>
+		<script src="/socket.io/socket.io.js"></script>
+		<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+		<script>
+			$(function () {
+				var socket = io();
+				socket.on('sensor data', function(data){
+					$('#sensorValue').text(data);
+				});
+			});
+		</script>
+	</body>
+</html>
