@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+	<head>
+		<title>Venmo playground</title>
+	</head>
+	<body>
+		<div>Venmo Dump</div>
+		<div id="sensorValue"> </div>
+		<script src="https://code.jquery.com/jquery-1.11.1.js"></script>
+		<script> 
+			var Client = require('node-rest-client').Client;
+ 
+			var client = new Client();
+			 
+			// direct way 
+			client.get("https://api.venmo.com/v1/payments?access_token=3de0ae4ab3824190ce5869bb31c6c2d60f294d49cce0e6b39839e2566aa68dfe", function (data, response) {
+				// parsed response body as js object 
+				console.log(data);
+				// raw response 
+				console.log(response);
+			});
+		
+
+		</script>
+	</body>
+</html>
