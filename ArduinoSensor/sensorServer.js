@@ -1,19 +1,22 @@
 /* Server initialization */
-var app = require('express')();
+var express = require('express');
+var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 //var io = require('socket.io')();
+require('./push')(express);
 
+// //serve home page
+// app.get('/', function(req, res){
+//   res.sendFile(__dirname + '/sensorData.html');
+// });
 
-//serve home page
-app.get('/', function(req, res){
-  res.sendFile(__dirname + '/sensorData.html');
-});
+// http.listen(3000, function(){
+//   console.log('listening on *:3000');
+// });
 
-http.listen(3000, function(){
-  console.log('listening on *:3000');
-});
-
+app.use(express.static(__dirname + '/html'));
+app.listen(3000);
 
 /* Serial Initialiaztion */
 var SerialPort = require('serialport');
