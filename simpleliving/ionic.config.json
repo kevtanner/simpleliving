@@ -1,0 +1,8 @@
+{
+  "name": "simpleliving",
+  "app_id": "9b3916cd",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}
