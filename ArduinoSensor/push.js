@@ -1,5 +1,4 @@
-module.exports = function (express) {
-var app = express();
+module.exports = function (app) {
 var apn = require('apn');
 var bodyParser = require('body-parser');
 var deviceToken;
@@ -24,10 +23,6 @@ app.use(bodyParser.urlencoded({
   extended: true
 }));
 
-var router = express.Router();
-app.set('router', router);
-app.use(router);
-
 app.post('/token', function(req, res) {
 
   var response = "Loud and Clear";
@@ -40,10 +35,10 @@ app.get('/push', function(req,res) {
 });
 
 function sendPush(token) {
- 
+  console.log('push sent');
     var options = {
-      cert: '../PushCert.pem',
-      key:  '../PushKey.pem',
+      cert: '../simpleliving/CodeMyHackCert.pem',
+      key:  '../simpleliving/CodeMyHackKey.pem',
       passphrase: 'Ch1cken$',
       production: false,
       rejectUnauthorized:false
@@ -57,9 +52,9 @@ function sendPush(token) {
     note.expiry = Math.floor(Date.now() / 1000) + 3600; // Expires 1 hour from now.
     note.badge = 3;
     note.sound = "ping.aiff";
-    note.alert = "See what other people said here";
+    note.alert = "The post has been delivered";
     note.payload = {'messageFrom': 'John Appleseed'};
-    note.topic = "io.ionic.message.dropper";
+    note.topic = "io.ionic.simpleliving";
     
     apnProvider.send(note, deviceToken).then( (result) => {
       console.log(JSON.stringify(result));

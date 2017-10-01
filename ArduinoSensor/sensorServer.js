@@ -4,7 +4,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 //var io = require('socket.io')();
-require('./push')(express);
+require('./push')(app);
 
 // //serve home page
 // app.get('/', function(req, res){
@@ -14,9 +14,11 @@ require('./push')(express);
 // http.listen(3000, function(){
 //   console.log('listening on *:3000');
 // });
-
+var router = express.Router();
+app.set('router', router);
+app.use(router);
 app.use(express.static(__dirname + '/html'));
-app.listen(3000);
+app.listen(8081);
 
 /* Serial Initialiaztion */
 var SerialPort = require('serialport');

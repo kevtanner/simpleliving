@@ -6,9 +6,6 @@
 #### setup push notification
 `$ cordova plugin add phonegap-plugin-push --variable SENDER_ID=11223344 --save`
 
-#### ios deploy
-`$ ionic cordova build ios --prod`
-
 #### ios simulator
 ```
 $ ionic cordova build ios
@@ -19,4 +16,9 @@ $ ionic cordova emulate ios
 ```
 $ cd platforms/ios/cordova 
 $ npm install ios-sim
+```
+
+### Deploy to Iphone
+```
+$ ionic cordova build ios --prod
 ```
